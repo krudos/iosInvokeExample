@@ -10,6 +10,9 @@
 
 @interface ViewController : UIViewController
 
+- (IBAction)invocarB_Button:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UITextField *tfMonto;
 
 @end
 

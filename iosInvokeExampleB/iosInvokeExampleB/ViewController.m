@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "procesarViewController.h"
 
 @interface ViewController ()
 
@@ -22,6 +23,24 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+- (void)called:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    
+    
+    procesarViewController *vista = (procesarViewController*)[[procesarViewController alloc] initWithNibName:@"procesarViewController" bundle:nil];
+    
+    vista.url = url;
+    vista.sourceApplication = sourceApplication;
+    
+    [self presentViewController:vista animated:YES completion:nil];
+    
+    
+
 }
 
 @end

@@ -24,4 +24,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)invocarB_Button:(id)sender {
+
+    NSString *customURL = @"procesarPago://";
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:customURL]])
+    {
+        NSMutableArray* argument = [[NSMutableArray alloc] init];
+        [argument addObject:[NSString stringWithFormat:@"monto=%@",self.tfMonto.text]];
+        
+        [argument addObject:@"tipo=1"];
+       
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@",customURL,[argument componentsJoinedByString:@","]]]];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"URL error"
+                                                        message:[NSString stringWithFormat:
+                                                                 @"No custom URL defined for %@", customURL]
+                                                       delegate:self cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+
+}
 @end

@@ -13,6 +13,8 @@
 		3D7D50ED1D0E80760082D42C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D7D50EB1D0E80760082D42C /* Main.storyboard */; };
 		3D7D50EF1D0E80760082D42C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D7D50EE1D0E80760082D42C /* Assets.xcassets */; };
 		3D7D50F21D0E80760082D42C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D7D50F01D0E80760082D42C /* LaunchScreen.storyboard */; };
+		3D7D51021D0E8BEA0082D42C /* procesarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7D51001D0E8BEA0082D42C /* procesarViewController.m */; };
+		3D7D51031D0E8BEA0082D42C /* procesarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D7D51011D0E8BEA0082D42C /* procesarViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,9 @@
 		3D7D50EE1D0E80760082D42C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D7D50F11D0E80760082D42C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D7D50F31D0E80760082D42C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D7D50FF1D0E8BEA0082D42C /* procesarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = procesarViewController.h; sourceTree = "<group>"; };
+		3D7D51001D0E8BEA0082D42C /* procesarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = procesarViewController.m; sourceTree = "<group>"; };
+		3D7D51011D0E8BEA0082D42C /* procesarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = procesarViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +72,9 @@
 				3D7D50F01D0E80760082D42C /* LaunchScreen.storyboard */,
 				3D7D50F31D0E80760082D42C /* Info.plist */,
 				3D7D50E21D0E80760082D42C /* Supporting Files */,
+				3D7D50FF1D0E8BEA0082D42C /* procesarViewController.h */,
+				3D7D51001D0E8BEA0082D42C /* procesarViewController.m */,
+				3D7D51011D0E8BEA0082D42C /* procesarViewController.xib */,
 			);
 			path = iosInvokeExampleB;
 			sourceTree = "<group>";
@@ -105,7 +113,7 @@
 		3D7D50D71D0E80760082D42C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = krudos;
 				TargetAttributes = {
 					3D7D50DE1D0E80760082D42C = {
@@ -137,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D7D50F21D0E80760082D42C /* LaunchScreen.storyboard in Resources */,
+				3D7D51031D0E8BEA0082D42C /* procesarViewController.xib in Resources */,
 				3D7D50EF1D0E80760082D42C /* Assets.xcassets in Resources */,
 				3D7D50ED1D0E80760082D42C /* Main.storyboard in Resources */,
 			);
@@ -150,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D7D50EA1D0E80760082D42C /* ViewController.m in Sources */,
+				3D7D51021D0E8BEA0082D42C /* procesarViewController.m in Sources */,
 				3D7D50E71D0E80760082D42C /* AppDelegate.m in Sources */,
 				3D7D50E41D0E80760082D42C /* main.m in Sources */,
 			);
@@ -191,8 +201,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -236,8 +248,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -302,6 +316,7 @@
 				3D7D50F81D0E80760082D42C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

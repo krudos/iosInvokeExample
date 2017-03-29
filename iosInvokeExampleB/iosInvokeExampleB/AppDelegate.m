@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "ViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -40,6 +40,28 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+   
+    
+    if (url != nil  ) {
+        
+        
+      
+       // ViewController* mainController = (ViewController*) [ self.window.rootViewController.childViewControllers firstObject];
+        ViewController* mainController = (ViewController*)  self.window.rootViewController;
+        
+        if (mainController){
+           
+            [mainController called:application openURL:url sourceApplication:sourceApplication annotation:annotation ];
+        }
+        
+    }
+    
+    return YES;
 }
 
 @end
