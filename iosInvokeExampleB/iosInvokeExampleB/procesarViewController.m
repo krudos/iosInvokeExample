@@ -20,35 +20,88 @@
     
     
     
+
+    NSDictionary* q = [self parseQueryString:self.url.query];//    NSString * scheme = [self.url scheme];
+//    NSArray* arguments = [[self.url query] componentsSeparatedByString:@"&"];
     
-    NSString * scheme = [self.url scheme];
-    NSArray* arguments = [[self.url query] componentsSeparatedByString:@","];
     
     
+    self.labelArgumentos.text = [q valueForKey:@"monto"];
     
     NSLog(@"Calling Application Bundle ID: %@", self.sourceApplication);
     NSLog(@"URL scheme:%@", [self.url scheme]);
     NSLog(@"URL query: %@", [self.url query]);
     
+    NSLog(@"");
+    
   
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSDictionary *)parseQueryString:(NSString *)query {
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    
+    NSCharacterSet *set = [NSCharacterSet URLHostAllowedCharacterSet];
+    
+    for (NSString *pair in pairs) {
+        NSArray *elements = [pair componentsSeparatedByString:@"="];
+        NSString *key = [[elements objectAtIndex:0] stringByAddingPercentEncodingWithAllowedCharacters:set];
+        NSString *val = [[elements objectAtIndex:1] stringByAddingPercentEncodingWithAllowedCharacters:set];
+        
+        [dict setObject:val forKey:key];
+    }
+    return dict;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)finalizarButton:(id)sender {
+    
+    
+    
+    NSDictionary* q = [self parseQueryString:self.url.query];
+    
+    NSString* monto = [q valueForKey:@"monto"];
+    
+    double monto2 = [monto doubleValue]  ;
+    
+    NSString *customURL = @"completoPago://";
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:customURL]])
+    {
+        NSMutableArray* argument = [[NSMutableArray alloc] init];
+        [argument addObject:[NSString stringWithFormat:@"monto=%.2f",monto2]];
+        
+        [argument addObject:[NSString stringWithFormat:@"resultado=%@",self.switchResultado.isOn?@"true":@"false"]];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@",customURL,[argument componentsJoinedByString:@"&"]]]];
+    }
+    else
+    {
+        
+        
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"URL error"
+                                     message:[NSString stringWithFormat:
+                                              @"No custom URL defined for %@", customURL]
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        
+        UIAlertAction* yesButton = [UIAlertAction
+                                    actionWithTitle:@"ok"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+                                        //Handle your yes please button action here
+                                    }];
+        
+        
+        
+        [alert addAction:yesButton];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
+    
 }
 @end

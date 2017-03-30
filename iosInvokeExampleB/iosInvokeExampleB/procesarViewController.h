@@ -15,5 +15,6 @@
 
 @property NSURL* url;
 @property NSString*  sourceApplication;
+@property (weak, nonatomic) IBOutlet UISwitch *switchResultado;
 
 @end

@@ -35,17 +35,73 @@
         
         [argument addObject:@"tipo=1"];
        
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@",customURL,[argument componentsJoinedByString:@","]]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@",customURL,[argument componentsJoinedByString:@"&"]]]];
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"URL error"
-                                                        message:[NSString stringWithFormat:
-                                                                 @"No custom URL defined for %@", customURL]
-                                                       delegate:self cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
+        
+       
+        
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"URL error"
+                                     message:[NSString stringWithFormat:
+                                              @"No custom URL defined for %@", customURL]
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        
+        UIAlertAction* yesButton = [UIAlertAction
+                                    actionWithTitle:@"ok"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+                                        //Handle your yes please button action here
+                                    }];
+        
+  
+        
+        [alert addAction:yesButton];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        
     }
 
 }
+
+
+
+
+- (void)called:(UIApplication *)application openURL:(NSURL *)url
+sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    
+    
+    
+    NSDictionary* q = [self parseQueryString:url.query];//
+    
+    self.labelResultado.text = [NSString stringWithFormat:@"monto:%@\nresultado:%@",[q valueForKey:@"monto"],[q valueForKey:@"resultado"]];
+    
+    
+}
+
+
+
+- (NSDictionary *)parseQueryString:(NSString *)query {
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    
+    NSCharacterSet *set = [NSCharacterSet URLHostAllowedCharacterSet];
+    
+    for (NSString *pair in pairs) {
+        NSArray *elements = [pair componentsSeparatedByString:@"="];
+        NSString *key = [[elements objectAtIndex:0] stringByAddingPercentEncodingWithAllowedCharacters:set];
+        NSString *val = [[elements objectAtIndex:1] stringByAddingPercentEncodingWithAllowedCharacters:set];
+        
+        [dict setObject:val forKey:key];
+    }
+    return dict;
+}
+
+
+
 @end

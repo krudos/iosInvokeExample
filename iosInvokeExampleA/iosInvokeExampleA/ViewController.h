@@ -14,5 +14,14 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *tfMonto;
 
+
+
+
+- (void)called:(UIApplication *)application openURL:(NSURL *)url
+sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
+
+@property (weak, nonatomic) IBOutlet UILabel *labelResultado;
+
+
 @end
 
